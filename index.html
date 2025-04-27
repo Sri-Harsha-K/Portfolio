@@ -10,7 +10,6 @@
     <style>
         /* Theme Variables */
         :root {
-            /* Dark Theme Colors */
             --primary-dark: #3D405B;
             --secondary-dark: #2D3047;
             --accent-color: #E07A5F;
@@ -19,15 +18,8 @@
             --text-light: #F4F1DE;
             --text-dark: #3D405B;
             --border-radius: 5px;
-            --card-bg-dark: #353851;
-
-    
-            --card-bg-light: #E8998D;
+            --card-bg: #353851;
         }
-        
-
-        
-
         
         * {
             margin: 0;
@@ -100,11 +92,7 @@
             background: var(--accent-color);
         }
         
-        #skills {
-            padding: 5rem 0;
-            background-color: var(--secondary-dark);
-            text-align: center;
-        }
+        /* Header */
         header {
             background-color: var(--secondary-dark);
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -382,12 +370,6 @@
         #skills {
             padding: 5rem 0;
             background-color: var(--secondary-dark);
-        }
-        
-        /* Skills Section */
-        #skills {
-            padding: 5rem 0;
-            background-color: var(--secondary-dark);
             text-align: center;
         }
         
@@ -401,44 +383,35 @@
         }
         
         .skill-category {
-            padding: 1.2rem;
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .skill-category h3 {
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-            text-align: center;
-            font-size: 1.1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        @media (max-width: 992px) {
-            .skills-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .skills-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .skill-category {
             padding: 1.5rem;
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .skill-category:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .skill-category:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-category:hover:before {
+            transform: scaleX(1);
         }
         
         .skill-category h3 {
@@ -462,42 +435,102 @@
         }
         
         .skill-item {
-            margin-bottom: 1rem;
-        }
-        
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
             color: var(--text-light);
+            transition: transform 0.3s ease;
         }
         
-        .skill-bar {
-            height: 10px;
-            background-color: rgba(244, 241, 222, 0.1);
-            border-radius: 10px;
+        .skill-category:hover .skill-item {
+            transform: translateX(5px);
+        }
+        
+        .skill-item span {
+            font-weight: 500;
+        }
+        
+        /* Experience Section */
+        #experience {
+            padding: 5rem 0;
+            background-color: var(--primary-dark);
+        }
+        
+        /* Education Section */
+        #education {
+            padding: 5rem 0;
+            background-color: var(--secondary-dark);
+        }
+        
+        /* Certifications Section */
+        #certifications {
+            padding: 5rem 0;
+            background-color: var(--primary-dark);
+        }
+        
+        /* Certification Cards with Hover Effects */
+        .cert-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
         
-        .skill-progress {
-            height: 100%;
-            background-color: var(--accent-color);
-            border-radius: 10px;
-            transition: width 1.5s ease;
-            width: 0;
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
         
-        .skill-category:hover .skill-progress {
-            animation: progressAnimation 1.5s forwards;
+        .cert-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
-        @keyframes progressAnimation {
-            0% {
-                width: 0;
-            }
-            100% {
-                width: var(--progress-width);
-            }
+        .cert-card:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .cert-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .cert-card:hover .cert-icon {
+            transform: scale(1.2);
+        }
+        
+        .cert-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+        
+        .cert-card:hover h3 {
+            color: var(--light-color);
+        }
+        
+        .cert-card p {
+            transition: opacity 0.3s ease;
+            color: var(--text-light);
+        }
+        
+        .cert-card:hover p {
+            opacity: 1;
         }
         
         /* Contact Section */
@@ -577,73 +610,13 @@
             transform: translateY(-3px);
         }
         
-        /* Certification Cards with Hover Effects */
-        .cert-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cert-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-        
-        .cert-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--accent-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        
-        .cert-card:hover:before {
-            transform: scaleX(1);
-        }
-        
-        .cert-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-        
-        .cert-card:hover .cert-icon {
-            transform: scale(1.2);
-        }
-        
-        .cert-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--accent-color);
-            transition: color 0.3s ease;
-        }
-        
-        .cert-card:hover h3 {
-            color: var(--light-color);
-        }
-        
-        .cert-card p {
-            transition: opacity 0.3s ease;
-        }
-        
-        .cert-card:hover p {
-            opacity: 1;
-        }
-        
         /* Responsive */
+        @media (max-width: 992px) {
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -690,11 +663,19 @@
                 margin-bottom: 2rem;
             }
         }
+        
+        @media (max-width: 576px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-
-
     <!-- Header -->
     <header>
         <div class="container">
@@ -815,7 +796,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" style="padding: 5rem 0; background-color: var(--primary-dark);">
+    <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <div style="background: var(--card-bg); border-radius: var(--border-radius); padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
@@ -825,7 +806,7 @@
                     <p>January 2021 – June 2023</p>
                 </div>
                 <p style="font-style: italic; margin-bottom: 1rem;">New Brunswick, NJ</p>
-                <ul style="list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem;">
+                <ul style="list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: var(--text-light);">
                     <li>Remodeled database architecture for Global Inventory data using SQL</li>
                     <li>Configured faster Big Data ETL pipelines through PySpark</li>
                     <li>Reduced execution time for transformation workflows through parallelization</li>
@@ -836,7 +817,7 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" style="padding: 5rem 0; background-color: var(--secondary-dark);">
+    <section id="education">
         <div class="container">
             <h2 class="section-title">Education</h2>
             <div style="background: var(--card-bg); border-radius: var(--border-radius); padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
@@ -846,14 +827,14 @@
                     <p>September 2023 – April 2025</p>
                 </div>
                 <p style="font-style: italic; margin-bottom: 1rem;">Boston, MA</p>
-                <p><strong>CGPA:</strong> 3.8/4.0</p>
-                <p><strong>Relevant Coursework:</strong> Python, SQL, R Programming, Data Mining, Predictive Analytics, Applications of AI, Probability and Statistics, Database Management System</p>
+                <p style="color: var(--text-light);"><strong>CGPA:</strong> 3.8/4.0</p>
+                <p style="color: var(--text-light);"><strong>Relevant Coursework:</strong> Python, SQL, R Programming, Data Mining, Predictive Analytics, Applications of AI, Probability and Statistics, Database Management System</p>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" style="padding: 5rem 0; background-color: var(--primary-dark);">
+    <section id="certifications">
         <div class="container">
             <h2 class="section-title">Certifications</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
@@ -896,40 +877,16 @@
                 <div class="skill-category">
                     <h3>Programming</h3>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Python</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 90%;"></div>
-                        </div>
+                        <span>Python</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>R</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 85%;"></div>
-                        </div>
+                        <span>R</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>SQL</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 95%;"></div>
-                        </div>
+                        <span>SQL</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>PySpark</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 85%;"></div>
-                        </div>
+                        <span>PySpark</span>
                     </div>
                 </div>
                 
@@ -937,40 +894,16 @@
                 <div class="skill-category">
                     <h3>Data Analysis</h3>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Pandas</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 95%;"></div>
-                        </div>
+                        <span>Pandas</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>NumPy</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 90%;"></div>
-                        </div>
+                        <span>NumPy</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Scikit-learn</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 85%;"></div>
-                        </div>
+                        <span>Scikit-learn</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Azure Databricks</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 90%;"></div>
-                        </div>
+                        <span>Azure Databricks</span>
                     </div>
                 </div>
                 
@@ -978,40 +911,16 @@
                 <div class="skill-category">
                     <h3>Data Visualization</h3>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Tableau</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 90%;"></div>
-                        </div>
+                        <span>Tableau</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Power BI</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 85%;"></div>
-                        </div>
+                        <span>Power BI</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Qlik</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 80%;"></div>
-                        </div>
+                        <span>Qlik</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Matplotlib/Seaborn</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 90%;"></div>
-                        </div>
+                        <span>Matplotlib/Seaborn</span>
                     </div>
                 </div>
                 
@@ -1019,40 +928,16 @@
                 <div class="skill-category">
                     <h3>Statistics & ML</h3>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Statistical Analysis</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 90%;"></div>
-                        </div>
+                        <span>Statistical Analysis</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Decision Trees</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 85%;"></div>
-                        </div>
+                        <span>Decision Trees</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Regression Models</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 85%;"></div>
-                        </div>
+                        <span>Regression Models</span>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Random Forest</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="--progress-width: 80%;"></div>
-                        </div>
+                        <span>Random Forest</span>
                     </div>
                 </div>
             </div>
@@ -1063,7 +948,7 @@
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
-            <form class="contact-form">
+            <form class="contact-form" id="whatsapp-contact-form">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" class="form-control" required>
@@ -1080,7 +965,9 @@
                     <label for="message">Message</label>
                     <textarea id="message" class="form-control" required></textarea>
                 </div>
-                <button type="submit" class="btn">Send Message</button>
+                <button type="submit" class="btn">
+                    <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Send via WhatsApp
+                </button>
             </form>
         </div>
     </section>
@@ -1126,25 +1013,35 @@
             });
         });
         
-
+        // WhatsApp Form Handling
+        const whatsappForm = document.getElementById('whatsapp-contact-form');
         
-        // Form Submission (Replace with actual form handling logic)
-        const contactForm = document.querySelector('.contact-form');
-        
-        contactForm.addEventListener('submit', function(e) {
+        whatsappForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simulate form submission
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
             
-            submitBtn.textContent = 'Sending...';
+            // Format message for WhatsApp (using URL encoding)
+            const whatsappMessage = `*Portfolio Contact Form*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Subject:* ${encodeURIComponent(subject)}%0A%0A*Message:*%0A${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp with prefilled message
+            window.open(`https://wa.me/18573968947?text=${whatsappMessage}`, '_blank');
+            
+            // Reset form
+            this.reset();
+            
+            // Show confirmation
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
             
             setTimeout(() => {
-                alert('Message sent successfully!');
-                this.reset();
-                submitBtn.textContent = originalText;
-            }, 1500);
+                submitBtn.innerHTML = originalText;
+            }, 3000);
         });
         
         // Animate skills on scroll
